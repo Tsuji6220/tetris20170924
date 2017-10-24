@@ -59,7 +59,7 @@ public class main3 extends Applet implements Runnable, KeyListener {
         offG.setColor(Color.gray);
         offG.fillRect(0,0,width,height);
 
- //       Block.polygon(xx,yy,block,offG,pattern,ran);
+        Block.polygon(xx,yy,block,offG,pattern,ran);
 
         for(int i=0;i<x;i++) {
             for(int j=0;j<y;j++) {
