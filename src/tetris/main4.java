@@ -7,7 +7,7 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class main3 extends Applet implements Runnable, KeyListener {
+public class main4 extends Applet implements Runnable, KeyListener {
     private int x,y;
     private int LOWSPEED=1000,HIGHSPEED=100;
     private int SPEED=LOWSPEED;
@@ -101,14 +101,14 @@ public class main3 extends Applet implements Runnable, KeyListener {
 
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode()==KeyEvent.VK_LEFT) {
-            if(xx>=block) {
+            if(xx>=block && Status[xx/block-1][yy/block+1] && Status[xx/block-1][yy/block] && Status[xx/block-1][yy/block-1] && Status[xx/block-1][yy/block-2]) {
                 xx-=block;
             }
-                repaint();
+            repaint();
         }
 
         if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            if(xx<width-block) {
+            if(xx<width-block && Status[xx/block+1][yy/block+1] && Status[xx/block+1][yy/block] && Status[xx/block+1][yy/block-1] && Status[xx/block+1][yy/block-2]) {
                 xx+=block;
             }
             repaint();

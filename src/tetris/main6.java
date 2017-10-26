@@ -7,18 +7,20 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class main3 extends Applet implements Runnable, KeyListener {
+public class main6 extends Applet implements Runnable, KeyListener {
     private int x,y;
+    private int startXX=50,startYY=20;
     private int LOWSPEED=1000,HIGHSPEED=100;
     private int SPEED=LOWSPEED;
     private int block=10;
     private int width=100,height=200;
     private int margin=10;
     private int xx,yy;
-    private int pattern=0;
+    private int pattern,turn;
     private int ran=0;
 
     private boolean[][] Status;
+    private int[][] colorStatus;
 
     private Graphics offG;
     private Image img;
@@ -38,13 +40,15 @@ public class main3 extends Applet implements Runnable, KeyListener {
         y=height/block;
 
         Status = new boolean[x][y+1];
+        colorStatus = new int[x][y];
+
         for(int i=0;i<x;i++) {
             for(int j=0;j<y;j++) {
                 Status[i][j] = true;
             }
         }
 
-        xx=width/2;
+        xx=startXX;
     }
 
     public void start() {
@@ -59,12 +63,12 @@ public class main3 extends Applet implements Runnable, KeyListener {
         offG.setColor(Color.gray);
         offG.fillRect(0,0,width,height);
 
-        Block3.polygon(xx,yy,block,offG,pattern,ran);
+        Block6.polygon(xx,yy,block,offG,pattern,ran);
 
         for(int i=0;i<x;i++) {
             for(int j=0;j<y;j++) {
                 if(Status[i][j]==false) {
-                    offG.setColor(Color.RED);
+                    offG.setColor(Clr6.clr[colorStatus[i][j]]);
                     offG.fillRect(i*block,j*block,block,block);
                     offG.setColor(Color.black);
                     offG.drawRect(i*block,j*block,block,block);
@@ -89,26 +93,23 @@ public class main3 extends Applet implements Runnable, KeyListener {
             repaint();
             yy += block;
 
-            if(Status[xx/block][yy/block+2]==false) {
-                Status[xx/block][yy/block+1]=false;
-                Status[xx/block][yy/block]=false;
-                Status[xx/block][yy/block-1]=false;
-                Status[xx/block][yy/block-2]=false;
-                yy=0;
+            if(Seigyo6.downCheck(xx,yy,block,Status,colorStatus,pattern,ran)) {
+                yy=startYY;
+                ran = (int)(Math.random()*10)%2;
             }
         }
     }
 
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode()==KeyEvent.VK_LEFT) {
-            if(xx>=block) {
+            if(Seigyo6.leftCheck(xx,yy,width,block,Status,pattern,ran)) {
                 xx-=block;
             }
-                repaint();
+            repaint();
         }
 
         if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            if(xx<width-block) {
+            if(Seigyo6.rightCheck(xx,yy,width,block,Status,pattern,ran)) {
                 xx+=block;
             }
             repaint();
@@ -122,6 +123,12 @@ public class main3 extends Applet implements Runnable, KeyListener {
     public void keyReleased(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_DOWN) {
             SPEED = LOWSPEED;
+        }
+
+        if(e.getKeyCode() == KeyEvent.VK_SPACE) {
+            turn++;
+            pattern = turn%4;
+            repaint();
         }
     }
 
