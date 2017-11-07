@@ -23,13 +23,13 @@ public class TetrisMain extends Applet implements Runnable, KeyListener{
   //		thread.start();				//スレッドの実行
   	}
   	/*-----------------------------------------------
-  		�Q�[�����s
+  		ゲームサイクルの管理
   	-------------------------------------------------*/
   	public void run(){
   		while(true){
-  			if(field.gameMain()){	//�Q�[���̃��C������
-  				repaint();			//��ʕ`��
-  			}else{	//�Q�[���I�[�o�[
+  			if(field.gameMain()){	
+  				repaint();			
+  			}else{
   				break;
   			}
   			try{
