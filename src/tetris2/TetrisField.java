@@ -16,11 +16,11 @@ class TetrisField {
 	//�萔
 	static final int CANVAS_HEIGHT = 600, CANVAS_WIDTH = 350;
 	static final int WALL = -1, SPACE = 0, BLOCK = 1;
-  	static final int HEIGHT = 20 + 1;	//����
-  	static final int WIDTH = 10 + 2; 	//��
-  	static final int BLOCK_SIZE = 25;	//�P�u���b�N�̕`��T�C�Y
+  	static final int HEIGHT = 20 + 1;	//高さ
+  	static final int WIDTH = 10 + 2; 	//幅
+  	static final int BLOCK_SIZE = 25;	//1ブロックの描画ｻｲｽﾞ
 
-  	private int blockX = 5, blockY = 0;	//�u���b�N����̍��W
+  	private int blockX = 5, blockY = 0;	//ブロック左上の座標
 
   	/*-----------------------------------------------
   		�R���X�g���N�^(������)
