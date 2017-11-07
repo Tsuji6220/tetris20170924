@@ -22,21 +22,21 @@ public class TetrisMain extends Applet implements Runnable, KeyListener{
   //		thread = new Thread(this);	//スレッドの生成
   //		thread.start();				//スレッドの実行
   	}
-  	/*-----------------------------------------------
-  		ゲームサイクルの管理
-  	-------------------------------------------------*/
-  	public void run(){
-  		while(true){
-  			if(field.gameMain()){	
-  				repaint();			
-  			}else{
-  				break;
-  			}
-  			try{
-  				Thread.sleep(SPEED);
-  			}catch(InterruptedException e){}
-  		}
-  	}
+//  	/*-----------------------------------------------
+//  		�Q�[�����s
+//  	-------------------------------------------------*/
+//  	public void run(){
+//  		while(true){
+//  			if(field.gameMain()){	//�Q�[���̃��C������
+//  				repaint();			//��ʕ`��
+//  			}else{	//�Q�[���I�[�o�[
+//  				break;
+//  			}
+//  			try{
+//  				Thread.sleep(SPEED);
+//  			}catch(InterruptedException e){}
+//  		}
+//  	}
   	/*-----------------------------------------------
   		画面描画
   	-------------------------------------------------*/
